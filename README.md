@@ -1,6 +1,7 @@
 # locWechat2
 全球主机论坛新帖企业微信推送
 最终效果
+
 企业微信中消息通知>>仅企业微信关闭，可使用微信接收通知
  <img src="https://github.com/bjtest3/locWechat2/blob/master/image/xiaoguo1.jpg" alt="Sample"  width="380" height="600">
 
