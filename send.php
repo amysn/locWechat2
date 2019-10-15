@@ -3,19 +3,20 @@
 //这里填入你申请的企业微信信息
 
 //企业id
-$corpid = '';
+$corpid = 'wwfe552caed0375870';
 //应用的Secret
-$corpsecret = '';
+$corpsecret = '7ipA5JRXIoaxnxEN7USNzh8L8-Kfe0VP4We6XYXWAAk';
 //推送的应用id
-$AgentId = '';
-
+$AgentId = '1000002';
 
 date_default_timezone_set('PRC');
+
 //如果不存在文本就禁止提交
 if(!isset($_REQUEST['msg']))
 {
   exit;
 }
+
 //获取发送数据数组
 function getDataArray($MsgArray)
 {
@@ -39,6 +40,8 @@ function getDataArray($MsgArray)
     );
     return $data;
 }
+
+
 //curl请求函数，微信都是通过该函数请求
 function https_request($url, $data = null)
 {
@@ -55,19 +58,23 @@ function https_request($url, $data = null)
     curl_close($curl);
     return $output;
 }
+
 /**
  * 开始推送
  */
+
 //替换你的ACCESS_TOKEN
 $ACCESS_TOKEN = json_decode(https_request("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=".$corpid."&corpsecret=".$corpsecret),true)["access_token"];
 //模板消息请求URL
 $url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=".$ACCESS_TOKEN;
 $MsgArray=array();
+
 //推送的应用id
 $MsgArray["agentid"]=$AgentId;
+
 //标题是可选值
 if(!isset($_REQUEST['title'])){
-   $MsgArray["title"]="hostloc新帖提醒";
+   $MsgArray["title"]="新消息通知";
 }
 else{
    $MsgArray["title"]=$_REQUEST['title'];
@@ -76,7 +83,12 @@ else{
 $MsgArray["msg"]=$_REQUEST['msg'];
 //推送时间
 $MsgArray["time"]=date('Y-m-d h:i:s',time());
-$MsgArray["url"]=$_REQUEST['url'];
+if($_REQUEST["url"]!=null){
+$MsgArray["url"]=$_REQUEST["url"];
+}
+else{ 
+    $MsgArray["url"]="https://www.hostloc.com/forum-45-1.html";
+ }
 //转化成json数组让微信可以接收
 $json_data = json_encode(getDataArray($MsgArray));
 //echo $json_data;exit;

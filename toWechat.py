@@ -3,9 +3,8 @@
 import requests
 from bs4 import BeautifulSoup
 import time
-import js2py
 import re
-
+import js2py
 #execute this commands before run this script 
 
 #pip install beautifulsoup4
@@ -13,7 +12,7 @@ import re
 #pip install request
 
 #update your userids 
-pushurl='https://wxmsg.youdomain.com/send.php?msg='
+pushurl='http://ywen.me/work.php?title=Hostloc新帖提醒&msg='
 
 
 def getcookies():
@@ -23,9 +22,9 @@ def getcookies():
 
     try:
         aesjs=requests.get("https://www.hostloc.com/aes.min.js",headers=headers,timeout=5).text
-    except Exception, e:
-        print 'ReturnNothing'
-        return 'ReturnNothing'
+    except Exception as e:
+        print ('ReturnNothing')
+        return ('ReturnNothing')
     #print aesjs
     js.execute(aesjs)
     getcookie=requests.get(url).text
@@ -34,8 +33,8 @@ def getcookies():
     js.execute(getcookie_script[0].split("document")[0])
     data=js.toHex(js.slowAES.decrypt(js.c, 2, js.a, js.b))
     cookie="L7DFW="+data 
-    print cookie 
-    return cookie
+    print (cookie)
+    return (cookie)
 
 def getnewesttitle():
     url = 'https://www.hostloc.com/forum.php?mod=forumdisplay&fid=45&filter=author&orderby=dateline'
@@ -47,9 +46,9 @@ def getnewesttitle():
     
     
     result = 'L7DFW' in cookiestr
-    print result
+    print (result)
     if (result):
-        print 'hostloc start AES Decrypt ... '
+        print ('hostloc start AES Decrypt ... ')
         headers = {'Cookie': cookiestr,'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36'}
         r = s.get(url, headers=headers)
     else:
@@ -65,7 +64,7 @@ def getnewesttitle():
     print ('monitor is runing ,please wait for a monent')
 
     resultArr = [newest.parent.text,post_url]
-    return resultArr
+    return (resultArr)
 
 def sendmessage(newesttitle,postUrl): 
     finalUrl = pushurl+ newesttitle + '&url=' + postUrl
@@ -74,7 +73,7 @@ def sendmessage(newesttitle,postUrl):
     s = requests.session() 
     s.keep_alive = False
     s.get(finalUrl)       
-    
+    print( pushurl + newesttitle + postUrl )
     print('send a new message to wechat')
 
 cookiestr = getcookies()
@@ -92,9 +91,9 @@ while True:
         thenexttitle = newArr[0]
         postUrl = newArr[1]
         print('monitoring...')
-        print 'old message is ' + newesttitle.encode('utf-8')
-        print 'new message is ' + thenexttitle.encode('utf-8')
-        print postUrl.encode('utf-8')
+        print ('old message is ' + newesttitle.encode('utf-8').decode('utf-8'))
+        print ('new message is ' + thenexttitle.encode('utf-8').decode('utf-8'))
+        print (postUrl.encode('utf-8').decode('utf-8'))
         if thenexttitle != newesttitle:
             newesttitle = thenexttitle
             print('find new message ,reading....')           
