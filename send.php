@@ -3,11 +3,11 @@
 //这里填入你申请的企业微信信息
 
 //企业id
-$corpid = 'wwfe552caed0375870';
+$corpid = '';
 //应用的Secret
-$corpsecret = '7ipA5JRXIoaxnxEN7USNzh8L8-Kfe0VP4We6XYXWAAk';
+$corpsecret = '';
 //推送的应用id
-$AgentId = '1000002';
+$AgentId = '';
 
 date_default_timezone_set('PRC');
 
