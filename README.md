@@ -3,7 +3,9 @@
 最终效果
 
 企业微信中消息通知>>仅企业微信关闭，可使用微信接收通知
- <img src="https://github.com/bjtest3/locWechat2/blob/master/image/xiaoguo1.jpg" alt="Sample"  width="380" height="600">
+
+
+<img src="https://github.com/bjtest3/locWechat2/blob/master/image/xiaoguo1.jpg" alt="Sample"  width="380" height="600">
 
 # 介绍
 自己去申请企业微信，不依赖于第三方服务公共账号<br>
