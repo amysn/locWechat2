@@ -37,7 +37,10 @@ pip install request
 
 python toWechat.py
 ```
-经测试py2中安装的js2py import时会报错，原因位置
+经测试py2中安装的js2py import时会报错，原因未知
+
+
+```
 **3、应对特殊意外，用这个脚本守护一下**
 ```
 vi listen.sh
