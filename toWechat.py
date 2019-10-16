@@ -12,7 +12,7 @@ import js2py
 #pip install request
 
 #update your userids 
-pushurl='http://ywen.me/work.php?title=Hostloc新帖提醒&msg='
+pushurl='http://域名/work.php?title=Hostloc新帖提醒&msg='
 
 
 def getcookies():
